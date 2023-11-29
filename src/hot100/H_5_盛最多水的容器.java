@@ -6,7 +6,7 @@ package hot100;
  * @Description
  */
 
-public class H_5 {
+public class H_5_盛最多水的容器 {
 
     //超时
     public int maxArea2(int[] height) {
@@ -52,7 +52,7 @@ public class H_5 {
     }
 
     public static void main(String[] args) {
-        H_5 test = new H_5();
+        H_5_盛最多水的容器 test = new H_5_盛最多水的容器();
 //        int[] height = new int[]{1,8,6,2,5,4,8,3,7};
         int[] height = new int[]{1, 1};
         int area = test.maxArea(height);

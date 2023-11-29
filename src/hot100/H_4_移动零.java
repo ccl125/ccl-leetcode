@@ -8,7 +8,7 @@ import java.util.Arrays;
  * @Description https://leetcode.cn/problems/move-zeroes/description/?envType=study-plan-v2&envId=top-100-liked
  */
 
-public class H_4 {
+public class H_4_移动零 {
 
     public void moveZeroes(int[] nums) {
         if (nums.length == 1) {
@@ -32,7 +32,7 @@ public class H_4 {
     }
 
     public static void main(String[] args) {
-        H_4 test = new H_4();
+        H_4_移动零 test = new H_4_移动零();
         int[] nums = new int[]{0,1,0,3,12};
 //        int[] nums = new int[]{1,0,1};
         test.moveZeroes(nums);

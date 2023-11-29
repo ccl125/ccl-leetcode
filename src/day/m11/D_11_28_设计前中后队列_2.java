@@ -1,4 +1,4 @@
-package day;
+package day.m11;
 
 import java.util.ArrayDeque;
 import java.util.Deque;
@@ -8,7 +8,7 @@ import java.util.Deque;
  * @Date: 2023/11/28 14:03
  * @Description
  */
-public class D_11_28_2 {
+public class D_11_28_设计前中后队列_2 {
 
     private final Deque<Integer> left = new ArrayDeque<>();
     private final Deque<Integer> right = new ArrayDeque<>();

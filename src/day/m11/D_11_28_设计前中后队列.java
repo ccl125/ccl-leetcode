@@ -1,4 +1,4 @@
-package day;
+package day.m11;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,9 +9,9 @@ import java.util.List;
  * @Description https://leetcode.cn/problems/design-front-middle-back-queue/?envType=daily-question&envId=2023-11-28
  * 链表List实现
  */
-public class D_11_28 {
+public class D_11_28_设计前中后队列 {
 
-    public D_11_28() {
+    public D_11_28_设计前中后队列() {
 
     }
 

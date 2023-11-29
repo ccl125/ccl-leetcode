@@ -1,4 +1,4 @@
-package day;
+package day.m11;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -10,7 +10,7 @@ import java.util.*;
  * @Description https://leetcode.cn/problems/smallest-number-in-infinite-set/?envType=daily-question&envId=2023-11-29
  */
 
-public class D_11_29 {
+public class D_11_29_无限集中的最小数字 {
 
     List<Integer> list = new ArrayList<>();
 

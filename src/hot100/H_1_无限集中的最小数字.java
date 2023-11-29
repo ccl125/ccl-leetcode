@@ -9,7 +9,7 @@ import java.util.Map;
  * @Description https://leetcode.cn/problems/two-sum/description/?envType=study-plan-v2&envId=top-100-liked
  */
 
-public class H_1 {
+public class H_1_无限集中的最小数字 {
 
     public int[] twoSum(int[] nums, int target) {
         Map<Integer, Integer> temp = new HashMap<>();

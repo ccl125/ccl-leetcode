@@ -1,4 +1,4 @@
-package day;
+package day.m11;
 
 import java.util.TreeSet;
 
@@ -7,7 +7,7 @@ import java.util.TreeSet;
  * @Date: 2023/11/29 14:21
  * @Description
  */
-public class D_11_29_2 {
+public class D_11_29_无限集中的最小数字_2 {
 
     TreeSet<Integer> set = new TreeSet<>();
 

@@ -8,7 +8,7 @@ import java.util.*;
  * @Description https://leetcode.cn/problems/group-anagrams/description/?envType=study-plan-v2&envId=top-100-liked
  */
 
-public class H_2 {
+public class H_2_字母异位词分组 {
 
     public List<List<String>> groupAnagrams(String[] strs) {
         Map<String, List<String>> map = new HashMap<>();

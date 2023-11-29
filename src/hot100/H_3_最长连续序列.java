@@ -9,7 +9,7 @@ import java.util.Set;
  * @Description https://leetcode.cn/problems/longest-consecutive-sequence/description/?envType=study-plan-v2&envId=top-100-liked
  */
 
-public class H_3 {
+public class H_3_最长连续序列 {
 
     public int longestConsecutive(int[] nums) {
         Set<Integer> set = new HashSet<>();
@@ -33,10 +33,10 @@ public class H_3 {
     }
 
     public static void main(String[] args) {
-        H_3 h_3 = new H_3();
+        H_3_最长连续序列 h_3最长连续序列 = new H_3_最长连续序列();
 //        int[] nums = {100, 4, 200, 1, 3, 2};
         int[] nums = {0, 3, 7, 2, 5, 8, 4, 6, 0, 1};
-        System.out.println(h_3.longestConsecutive(nums));
+        System.out.println(h_3最长连续序列.longestConsecutive(nums));
     }
 
 }

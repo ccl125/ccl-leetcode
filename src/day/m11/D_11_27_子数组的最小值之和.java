@@ -1,4 +1,4 @@
-package day;
+package day.m11;
 
 import java.util.Stack;
 
@@ -8,7 +8,7 @@ import java.util.Stack;
  * @Description <a href="https://leetcode.cn/problems/sum-of-subarray-minimums/description/?envType=daily-question&envId=2023-11-27">...</a>
  */
 
-public class D_11_27 {
+public class D_11_27_子数组的最小值之和 {
 
     private static final int MOD = 1000000007;
 
@@ -62,7 +62,7 @@ public class D_11_27 {
     }
 
     public static void main(String[] args) {
-        D_11_27 day = new D_11_27();
+        D_11_27_子数组的最小值之和 day = new D_11_27_子数组的最小值之和();
         int[] arr = {3, 1, 2, 4};
         System.out.println(day.sumSubarrayMins(arr));
     }

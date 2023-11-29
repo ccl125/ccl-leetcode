@@ -10,7 +10,7 @@ import java.util.*;
  * @Description https://leetcode.cn/problems/smallest-number-in-infinite-set/?envType=daily-question&envId=2023-11-29
  */
 
-public class D11_29 {
+public class D_11_29 {
 
     List<Integer> list = new ArrayList<>();
 

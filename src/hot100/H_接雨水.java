@@ -13,13 +13,13 @@ public class H_接雨水 {
         Stack<Integer> stack = new Stack<>();
         int res = 0;
         for (int i = 0; i < height.length; i++) {
-            while (!stack.isEmpty() && stack.peek() >= height[i]) {
+            while (!stack.isEmpty() && height[stack.peek()] <= height[i]) {
                 int cur = stack.pop();
                 if (stack.isEmpty()) {
                     break;
                 }
                 int left = stack.peek();
-                int h = Math.min(height[left], height[cur]) - height[i];
+                int h = Math.min(height[left], height[i]) - height[cur];
                 int w = i - stack.peek() - 1;
                 res += h * w;
             }
@@ -30,7 +30,7 @@ public class H_接雨水 {
 
     public static void main(String[] args) {
         H_接雨水 h = new H_接雨水();
-        int[] height = {0,1,0,2,1,0,1,3,2,1,2,1};
+        int[] height = {4,2,0,3,2,5};
         int res = h.trap(height);
         System.out.println(res);
     }

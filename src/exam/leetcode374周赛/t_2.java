@@ -10,35 +10,33 @@ import java.util.*;
 
 public class t_2 {
 
-    public int minimumAddedCoins(int[] coins, int target) {
-        List<Integer> temp = new ArrayList<>();
-        int res = 0;
-        for (int i = 0; i < coins.length; i++) {
-            for (int j = i + 1; j < coins.length; j++) {
-                temp.add(coins[i] + coins[j]);
+    public  int minimumAddedCoins(int[] coins, int target) {
+        // 先将coins进行升序排列
+        Arrays.sort(coins);
+
+        int i = 0; // 表示加入一个新的数-coins[0]
+        int s = 1; // 能连续整数区间的最大值
+        int ans = 0; // 需要添加几次s
+
+        // 保证[0,s-1]区间大于等于[1,target]区间
+        while (s <= target) {
+            if (i < coins.length && coins[i] <= s) {
+                // 此时 x <= s
+                s += coins[i];
+                ++i;
+            } else {
+                s += s; // 此时 x > s ，因此需要添加新元素s
+                ++ans;
             }
         }
-        for (int i = 1; i <= target; i++) {
-            if (!temp.contains(i)) {
-                res++;
-                temp.add(i);
-                help(temp, i);
-            }
-        }
-        return res - 1;
+        return ans;
     }
 
-    public void help(List<Integer> temp, int target) {
-        int size = temp.size();
-        for (int i = 0; i < size; i++) {
-            temp.add(temp.get(i) + target);
-        }
-    }
 
     public static void main(String[] args) {
         t_2 t = new t_2();
-        int[] coins = {1,1,1};
-        int target = 20;
+        int[] coins = {1,4,10};
+        int target = 19;
         int res = t.minimumAddedCoins(coins, target);
         System.out.println(res);
     }

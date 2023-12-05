@@ -6,7 +6,7 @@ package day.m12;
  * @Description
  */
 
-public class D_12_3_可获得的最大点数 {
+public class D_12_03_可获得的最大点数 {
 
     public int maxScore(int[] cardPoints, int k) {
         int res = 0;
@@ -22,7 +22,7 @@ public class D_12_3_可获得的最大点数 {
     }
 
     public static void main(String[] args) {
-        D_12_3_可获得的最大点数 d = new D_12_3_可获得的最大点数();
+        D_12_03_可获得的最大点数 d = new D_12_03_可获得的最大点数();
         int[] cardPoints = {1, 2, 3, 4, 5, 6, 1};
         int k = 3;
         int res = d.maxScore(cardPoints, k);

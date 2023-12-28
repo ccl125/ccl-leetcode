@@ -8,14 +8,9 @@ package day.m12;
 public class D_12_27_保龄球游戏的获胜者 {
 
     public int isWinner(int[] player1, int[] player2) {
-        long sum1 = 0;
-        long sum2 = 0;
-        int score1 = getScore(player1);
-        int score2 = getScore(player2);
-        for (int i = 0; i < player1.length; i++) {
-            sum1 += player1[i];
-            sum2 += player2[i];
-        }
+
+        int sum1 = getScore(player1);
+        int sum2 = getScore(player2);
         if (sum1 == sum2) return 0;
         return sum1 > sum2 ? 1 : 2;
     }

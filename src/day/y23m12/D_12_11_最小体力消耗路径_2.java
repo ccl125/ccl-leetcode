@@ -1,4 +1,4 @@
-package day.m12;
+package day.y23m12;
 
 import java.util.LinkedList;
 import java.util.Queue;

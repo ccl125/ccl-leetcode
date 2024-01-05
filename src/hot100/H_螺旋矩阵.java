@@ -6,80 +6,88 @@ import java.util.List;
 /**
  * @Author: CuiChengLong
  * @Date: 2023/12/29 12:51
- * @Description
+ * @Description [0][0]、[0][1]、[0][2] 0行，123列
+ * [0][0]、[1][0]、[2][0] 0列，123行
  */
 public class H_螺旋矩阵 {
+
+    //列
+    int column = 0;
+    //行
+    int row = 0;
 
     public List<Integer> spiralOrder(int[][] matrix) {
         boolean[][] temp = new boolean[matrix.length][matrix[0].length];
         List<Integer> res = new ArrayList<>();
         int sum = matrix.length * matrix[0].length;
-        right(matrix, temp, res, 0, 0, sum);
+        while (res.size() < sum) {
+            dfsRight(matrix, temp, res);
+            dfsDown(matrix, temp, res);
+            dfsLeft(matrix, temp, res);
+            dfsUp(matrix, temp, res);
+        }
         return res;
     }
 
-    private void right(int[][] matrix, boolean[][] temp,
-                       List<Integer> res, int i, int j, int sum) {
-        res.add(matrix[i][j]);
-        temp[i][j] = true;
-        right(matrix, temp, res, i, j + 1, sum);
-        if (res.size() >= sum) {
-            return;
+    private void dfsUp(int[][] matrix, boolean[][] temp, List<Integer> res) {
+        //往上走，记录已走过的位置
+        while (row >= 0 && !temp[row][column]) {
+            res.add(matrix[row][column]);
+            temp[row][column] = true;
+            row--;
         }
-        if (check(i, j, matrix) || !temp[i][j]) {
-            down(matrix, temp, res, i + 1, j, sum);
+        //如果已经走过或者越界，回退一步,row++是行回退，column++ 列加是继续向右走
+        if (row == -1 || temp[row][column]) {
+            row++;
+            column++;
         }
     }
 
-    private void down(int[][] matrix, boolean[][] temp,
-                      List<Integer> res, int i, int j, int sum) {
-        if (res.size() >= sum) {
-            return;
+    private void dfsLeft(int[][] matrix, boolean[][] temp, List<Integer> res) {
+        //往左走，记录已走过的位置
+        while (column >= 0 && !temp[row][column]) {
+            res.add(matrix[row][column]);
+            temp[row][column] = true;
+            column--;
         }
-        if (check(i, j, matrix) && !temp[i][j]) {
-            left(matrix, temp, res, i, j - 1, sum);
+        //如果已经走过或者越界，回退一步,column++是回退，row--是继续向上走
+        if (column == -1 || temp[row][column]) {
+            column++;
+            row--;
         }
-        res.add(matrix[i][j]);
-        temp[i][j] = true;
-        down(matrix, temp, res, i + 1, j, sum);
     }
 
-    private void left(int[][] matrix, boolean[][] temp,
-                      List<Integer> res, int i, int j, int sum) {
-        if (res.size() >= sum) {
-            return;
+    private void dfsDown(int[][] matrix, boolean[][] temp, List<Integer> res) {
+        //往下走，记录已走过的位置
+        while (row < matrix.length && !temp[row][column]) {
+            res.add(matrix[row][column]);
+            temp[row][column] = true;
+            row++;
         }
-        if (check(i, j, matrix) && !temp[i][j]) {
-            up(matrix, temp, res, i - 1, j, sum);
+        //如果已经走过或者越界，回退一步,row--是行回退，column-- 列减是继续向左走
+        if (row == matrix.length || temp[row][column]) {
+            row--;
+            column--;
         }
-        res.add(matrix[i][j]);
-        temp[i][j] = true;
-        left(matrix, temp, res, i, j - 1, sum);
     }
 
-    private void up(int[][] matrix, boolean[][] temp,
-                    List<Integer> res, int i, int j, int sum) {
-        if (res.size() >= sum) {
-            return;
+    private void dfsRight(int[][] matrix, boolean[][] temp, List<Integer> res) {
+        //往右走，记录已走过的位置
+        while (column < matrix[0].length && !temp[row][column]) {
+            res.add(matrix[row][column]);
+            temp[row][column] = true;
+            column++;
         }
-        if (check(i, j, matrix) && !temp[i][j]) {
-            right(matrix, temp, res, i, j + 1, sum);
+        //如果已经走过或者越界，回退一步,column--是回退，row++是继续向下走
+        if (column == matrix[0].length || temp[row][column]) {
+            column--;
+            row++;
         }
-        res.add(matrix[i][j]);
-        temp[i][j] = true;
-        up(matrix, temp, res, i - 1, j, sum);
-    }
-
-    private boolean check(int i, int j, int[][] matrix) {
-        if (i < 0 || j < 0 || i >= matrix.length || j >= matrix[0].length) {
-            return true;
-        }
-        return false;
     }
 
     public static void main(String[] args) {
         H_螺旋矩阵 test = new H_螺旋矩阵();
-        int[][] matrix = new int[][]{{1,2,3}, {4,5,6}, {7,8,9}};
+        int[][] matrix = new int[][]{{1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 16}};
         System.out.println(test.spiralOrder(matrix));
     }
 

@@ -1,4 +1,4 @@
-package day.m11;
+package day.y23m11;
 
 import java.util.ArrayDeque;
 import java.util.Deque;

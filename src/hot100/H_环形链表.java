@@ -1,5 +1,8 @@
 package hot100;
 
+import java.util.HashMap;
+import java.util.HashSet;
+
 /**
  * @Author: CuiChengLong
  * @Date: 2024/1/4 19:17
@@ -19,6 +22,7 @@ public class H_环形链表 {
         }
     }
 
+    //快慢指针
     public boolean hasCycle(ListNode head) {
         ListNode fast = head;
         ListNode slow = head;
@@ -31,6 +35,19 @@ public class H_环形链表 {
             if (fast == slow) {
                 return true;
             }
+        }
+        return false;
+    }
+
+    //Hash
+    public boolean hasCycle2(ListNode head) {
+        HashSet<ListNode> set = new HashSet<>();
+        while (head != null) {
+            if (set.contains(head)) {
+                return true;
+            }
+            set.add(head);
+            head = head.next;
         }
         return false;
     }

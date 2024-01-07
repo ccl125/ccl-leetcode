@@ -1,6 +1,7 @@
 package day.m1;
 
 import java.util.Arrays;
+import java.util.Stack;
 
 /**
  * @Author: CuiChengLong
@@ -9,7 +10,7 @@ import java.util.Arrays;
  */
 public class D_01_05_队列中可以看到的人数 {
 
-    //超时O(n2)
+    //超时O(n2)40 / 42 个通过测试用例
     public int[] canSeePersonsCount(int[] heights) {
         int[] res = new int[heights.length];
         for (int i = 0; i < heights.length; i++) {
@@ -37,10 +38,30 @@ public class D_01_05_队列中可以看到的人数 {
         return res;
     }
 
+    public int[] canSeePersonsCount2(int[] height) {
+        int[] res = new int[height.length];
+        Stack<Integer> stack = new Stack<>();
+        for (int i = height.length - 1; i >= 0; i--) {
+            int ans = 0;
+            while (!stack.isEmpty() && height[i] >= stack.peek()) {
+                ans++;
+                stack.pop();
+            }
+            if (!stack.isEmpty()) {
+                ans++;
+            }
+            stack.push(height[i]);
+            res[i] = ans;
+        }
+        return res;
+    }
+
+
+
     public static void main(String[] args) {
         D_01_05_队列中可以看到的人数 test = new D_01_05_队列中可以看到的人数();
         int[] height = new int[]{10, 6, 8, 5, 11, 9};
-        System.out.println(Arrays.toString(test.canSeePersonsCount(height)));
+        System.out.println(Arrays.toString(test.canSeePersonsCount2(height)));
     }
 
 }

@@ -1,9 +1,6 @@
 package exam.leetcode379周赛;
 
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.HashSet;
-import java.util.Map;
+import java.util.*;
 
 /**
  * @Author CuiChengLong
@@ -14,58 +11,35 @@ import java.util.Map;
 public class t_3 {
 
     public int maximumSetSize(int[] nums1, int[] nums2) {
-        int n = nums2.length;
-        n /= 2;
-        Map<Integer, Integer> num2Map = new HashMap<>();
-        Map<Integer, Integer> num1Map = new HashMap<>();
-        Arrays.sort(nums1);
-        Arrays.sort(nums2);
-        for (int i = 0; i < nums2.length; i++) {
-            if (num2Map.containsKey(nums2[i])) {
-                num2Map.put(nums2[i], num2Map.get(nums2[i]) + 1);
-            } else {
-                num2Map.put(nums2[i], 1);
-            }
+        // 正难则反，变为两个数组各取一半加到新数组里要求新数组里元素种类数最多；
+        // 则先加非交集，再加交集；
+        int n = nums1.length / 2;
+        Set<Integer> set = new HashSet<>();
+        Set<Integer> set1 = new HashSet<>();
+        for (int x : nums1) {
+            set.add(x);
+            set1.add(x);
         }
-
-        for (int i = 0; i < nums1.length; i++) {
-            if (num1Map.containsKey(nums1[i])) {
-                num1Map.put(nums1[i], num1Map.get(nums1[i]) + 1);
-            } else {
-                num1Map.put(nums1[i], 1);
-            }
+        Set<Integer> set2 = new HashSet<>();
+        for (int x : nums2) {
+            set.add(x);
+            set2.add(x);
         }
-
-        HashSet<Integer> n1 = new HashSet<>();
-        HashSet<Integer> n2 = new HashSet<>();
-        for (int i = 0; i < nums1.length; i++) {
-            Integer sum = num2Map.get(nums1[i]);
-            if (sum!= null && sum > 0 && n > 0) {
-                num2Map.put(nums1[i], sum -1);
-                n--;
-            } else {
-                n1.add(nums1[i]);
-            }
-            if (n1.size() == nums2.length/2) break;
-        }
-        n = nums2.length/2;
-        for (int i = 0; i < nums2.length; i++) {
-            Integer sum = num1Map.get(nums2[i]);
-            if (sum!= null && sum > 0 && n > 0) {
-                num1Map.put(nums2[i], sum -1);
-                n--;
-            } else {
-                n2.add(nums2[i]);
-            }
-            if (n2.size() == nums2.length/2) break;
-        }
-        n1.addAll(n2);
-        return n1.size();
+        //数组删除n个元素后，最多能保留的元素种类数为n和set1.size(）的最小值；
+        // 每个集合移除后还剩下多少个，答案在length/2与不重合的元素之间
+        // 取最小值（就是比如集合1,2,3,4 但是最终答案也是1,2。而不是1,2,3,4因为要去除length/2个，不重复的再多，能贡献给最终答案的最多也是length/2个）
+        int x = Math.min(set1.size(), n);
+        int y = Math.min(set2.size(), n);
+        //set.size是所有不重复的，x+y是移除后最多包含的，答案不可能超过set.size()
+        //取最小值
+        return Math.min(set.size(), x + y);
     }
 
     public static void main(String[] args) {
-        int[] num1 = new int[]{1,2,1,1};
-        int[] num2 = new int[]{1,2,3,4};
+//        int[] num1 = new int[]{1,2,1,1};
+//        int[] num2 = new int[]{1,2,3,4};
+        int[] num1 = new int[]{1, 2, 3, 4, 5, 6};
+        int[] num2 = new int[]{1, 1, 1, 1, 1, 1};
         t_3 test = new t_3();
         System.out.println(test.maximumSetSize(num1, num2));
     }

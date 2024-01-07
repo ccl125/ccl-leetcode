@@ -1,4 +1,4 @@
-package day.m1;
+package day.y24m1;
 
 /**
  * @Author: CuiChengLong

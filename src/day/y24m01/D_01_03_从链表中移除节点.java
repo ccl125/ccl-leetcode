@@ -1,4 +1,4 @@
-package day.y24m1;
+package day.y24m01;
 
 import java.util.Deque;
 import java.util.LinkedList;

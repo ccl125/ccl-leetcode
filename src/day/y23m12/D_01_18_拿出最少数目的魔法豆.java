@@ -63,4 +63,7 @@ public class D_01_18_拿出最少数目的魔法豆 {
         System.out.println(minimumRemoval(beans2));
     }
 
+
+
+
 }

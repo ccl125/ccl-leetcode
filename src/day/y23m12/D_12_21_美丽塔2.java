@@ -1,7 +1,6 @@
 package day.y23m12;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 /**
@@ -15,16 +14,13 @@ public class D_12_21_美丽塔2 {
     public long maximumSumOfHeights(List<Integer> maxHeights) {
         int[] arr = new int[maxHeights.size()];
         int[] add = new int[maxHeights.size()];
-        int max = Integer.MIN_VALUE;
         for (int i = 0; i < maxHeights.size(); i++) {
             arr[i] = maxHeights.get(i);
             add[i] = maxHeights.get(i);
-            max = Math.max(max, arr[i]);
         }
         for (int i = 0; i < maxHeights.size(); i++) {
             findMax(i, arr, add);
         }
-        System.out.println(Arrays.toString(arr));
         return res;
     }
 
@@ -45,9 +41,7 @@ public class D_12_21_美丽塔2 {
             ans += j;
         }
         res = Math.max(res, ans);
-        for (int i = 0; i < arr.length; i++) {
-            arr[i] = add[i];
-        }
+        System.arraycopy(add, 0, arr, 0, arr.length);
     }
 
 

@@ -8,7 +8,7 @@ import java.util.List;
  * @Date: 2024/1/25 15:48
  * @Description DFS写的很丑陋，要用BFS
  */
-public class 腐烂的橘子 {
+public class 腐烂的橘子_DFS {
 
     int[][] temp;
 
@@ -61,14 +61,10 @@ public class 腐烂的橘子 {
 
     //腐烂大法
     public void helpMove(int[][] grid, int i, int j) {
-        if (i + 1 < grid.length && grid[i + 1][j] == 1)
-            grid[i + 1][j] = 2;
-        if (i - 1 >= 0 && grid[i - 1][j] == 1)
-            grid[i - 1][j] = 2;
-        if (j + 1 < grid[0].length && grid[i][j + 1] == 1)
-            grid[i][j + 1] = 2;
-        if (j - 1 >= 0 && grid[i][j - 1] == 1)
-            grid[i][j - 1] = 2;
+        if (i + 1 < grid.length && grid[i + 1][j] == 1) grid[i + 1][j] = 2;
+        if (i - 1 >= 0 && grid[i - 1][j] == 1) grid[i - 1][j] = 2;
+        if (j + 1 < grid[0].length && grid[i][j + 1] == 1) grid[i][j + 1] = 2;
+        if (j - 1 >= 0 && grid[i][j - 1] == 1) grid[i][j - 1] = 2;
     }
 
     // 判断当前分钟是否已经都腐烂了
@@ -118,7 +114,7 @@ public class 腐烂的橘子 {
     }
 
     public static void main(String[] args) {
-        腐烂的橘子 test = new 腐烂的橘子();
+        腐烂的橘子_DFS test = new 腐烂的橘子_DFS();
 //        int[][] grid = new int[][]{
 //                {2,0,1,1,1,1,1,1,1,1},
 //                {1,0,1,0,0,0,0,0,0,1},

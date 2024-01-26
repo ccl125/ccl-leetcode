@@ -3,79 +3,79 @@ package hot100.h9_图论;
 import java.util.*;
 
 /**
-*@Author CuiChengLong
-*@Date 2024/1/25 21:29
-*@Description
-*/
+ * @Author CuiChengLong
+ * @Date 2024/1/25 21:29
+ * @Description
+ */
 
 public class 课程表 {
 
-    int res = 0;
-    //每个课程的前置课程，如果没有前置课程的话，说明可以直接学
-    // k-某个课，v-某个课的前置课程需要学习的
-    HashMap<Integer, Integer> preMap = new HashMap<>();
-    // 后置课，k，找前置课
-    HashMap<Integer, Integer> suffixMap = new HashMap<>();
+    // 拓扑排序
     public boolean canFinish(int numCourses, int[][] prerequisites) {
-        //存学过课程
-        HashSet<Integer> set = new HashSet<>();
-        if (prerequisites.length <= 0) {
+        if (prerequisites.length < 2)
             return true;
-        }
-
-        prerequisites = removeDuplicates(prerequisites);
-
+        // 每个节点的入度
+        HashMap<Integer, Integer> inComing = new HashMap<>();
         for (int[] arr : prerequisites) {
-            preMap.put(arr[0], arr[1]);
-            suffixMap.put(arr[1], arr[0]);
+            if (inComing.get(arr[0]) != null) {
+                inComing.put(arr[0], inComing.get(arr[0]) + 1);
+            } else {
+                inComing.put(arr[0], 1);
+            }
+            inComing.put(arr[1], inComing.getOrDefault(arr[1], 0));
         }
+        // 每个节点的后续节点，k - prerequisites[1], v - List<Integer>
+        HashMap<Integer, List<Integer>> nextList = new HashMap<>();
         for (int[] arr : prerequisites) {
-            if (preMap.get(arr[1]) == null) {
-                //从当前可以学的后置课开始深搜
-                int temp = 0;
-                dfs(arr[1], temp);
+            if (nextList.containsKey(arr[1])) {
+                nextList.get(arr[1]).add(arr[0]);
+            } else {
+                nextList.put(arr[1], new ArrayList<>());
+                nextList.get(arr[1]).add(arr[0]);
             }
         }
-        return res >= numCourses;
-    }
 
-
-    public void dfs(int coursesNum, int temp) {
-        int preCourses = suffixMap.get(coursesNum);
-        temp += 2;
-        if (suffixMap.get(preCourses) == null) {
-            res = Math.max(res, temp);
-            return;
-        } else {
-            dfs(preCourses, temp);
+        // Kahn
+        Queue<Integer> qu = new LinkedList<>();
+        // 入度为0的入队列
+        for (Map.Entry<Integer, Integer> incoming : inComing.entrySet()) {
+            if (incoming.getValue() == 0) {
+                qu.offer(incoming.getKey());
+            }
         }
-
-    }
-
-    public static int[][] removeDuplicates(int[][] inputArray) {
-        List<int[]> result = new ArrayList<>();
-        c:
-        for (int[] pair : inputArray) {
-            for (int[] pair2 : inputArray) {
-                if (pair[0] == pair2[1] && pair[1] == pair2[0]) {
-                    continue c;
+        if (qu.size() == 0)
+            return false;
+        while (!qu.isEmpty()) {
+            // System.out.println(numCourses);
+            // 入度为0的节点出队列
+            int zeroInComing = qu.poll();
+            // 将出队列的入度为0的节点的后续节点的入度
+            List<Integer> curNext = nextList.get(zeroInComing);
+            if (curNext == null)
+                continue;
+            for (Integer next : curNext) {
+                if (inComing.get(next) != null) {
+                    inComing.put(next, inComing.get(next) - 1);
+                    if (inComing.get(next) == 0) {
+                        qu.offer(next);
+                    }
                 }
             }
-            result.add(pair);
-        }
-        // 将List转换为二维数组
-        int[][] resultArray = new int[result.size()][2];
-        for (int i = 0; i < result.size(); i++) {
-            resultArray[i] = result.get(i);
-        }
 
-        return resultArray;
+        }
+        for (int key : inComing.keySet()) {
+            if (inComing.get(key) != 0) {
+                return false;
+            }
+        }
+        return true;
     }
 
     public static void main(String[] args) {
         课程表 test = new 课程表();
-        int[][] prerequisites = new int[][]{{1,0},{0,1}};
-        test.canFinish(2, prerequisites);
+//        int[][] prerequisites = new int[][]{{1,0},{0,1}};
+        int[][] prerequisites = new int[][]{{1, 0}};
+        System.out.println(test.canFinish(2, prerequisites));
     }
 
 }

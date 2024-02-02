@@ -19,13 +19,19 @@ public class P1181 {
         }
         int res = 0;
         int ans = 0;
-        for (int i = 0; i < arr.length; i++) {
-            ans += arr[i];
+        int index = 0;
+        while (index < arr.length) {
             if (ans >= m) {
+                if (ans > m && index != 0) {
+                    index--;
+                }
                 res++;
                 ans = 0;
+            } else {
+                ans += arr[index++];
             }
         }
+        if (ans > 0) res += 1;
         System.out.println(res);
     }
 

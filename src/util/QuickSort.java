@@ -27,6 +27,7 @@ public class QuickSort {
             if (left < right) {
                 arr[right] = arr[left];
             }
+            //比基准元素小的都在左边，比基准元素大的都在右边，这时候left，right指针相交的地方就是最终基准元素的位置
             if (left >= right) {
                 arr[left] = pri;
             }

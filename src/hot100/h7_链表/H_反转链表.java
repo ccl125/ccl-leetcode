@@ -73,9 +73,9 @@ public class H_反转链表 {
         H_反转链表 test = new H_反转链表();
         ListNode d = test.new ListNode(1);
         d.next = test.new ListNode(2);
-        d.next.next = test.new ListNode(3);
-        d.next.next.next = test.new ListNode(4);
-        d.next.next.next.next = test.new ListNode(5);
+//        d.next.next = test.new ListNode(3);
+//        d.next.next.next = test.new ListNode(4);
+//        d.next.next.next.next = test.new ListNode(5);
         test.reverseList2(d);
     }
 

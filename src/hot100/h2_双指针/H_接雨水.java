@@ -30,7 +30,8 @@ public class H_接雨水 {
 
     public static void main(String[] args) {
         H_接雨水 h = new H_接雨水();
-        int[] height = {4,2,0,3,2,5};
+//        int[] height = {4,2,0,3,2,5};
+        int[] height = {60,20,20,10,30};
         int res = h.trap(height);
         System.out.println(res);
     }

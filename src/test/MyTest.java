@@ -1,9 +1,7 @@
 package test;
 
 import java.util.UUID;
-import java.util.concurrent.ConcurrentHashMap;
-import java.util.concurrent.ForkJoinPool;
-import java.util.concurrent.TimeUnit;
+import java.util.concurrent.*;
 import java.util.function.Function;
 import java.util.stream.Collectors;
 import java.util.stream.IntStream;
@@ -49,7 +47,14 @@ public class MyTest {
         //最后元素个数会是1000吗？
 //        log.info("finish size:{}", concurrentHashMap.size());
         System.out.println("finish size = " + concurrentHashMap.size());
+        ThreadLocal<Integer> test = new ThreadLocal<>();
+        CompletableFuture<Void> future = new CompletableFuture<>();
+        CompletableFuture<Void> uCompletableFuture = future.applyToEither(getData2(2), Function.identity());
         return "OK";
+    }
+
+    public CompletionStage<? extends Void> getData2(int a) {
+        return null;
     }
 
     public static void main(String[] args) throws InterruptedException {

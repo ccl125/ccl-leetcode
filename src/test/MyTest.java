@@ -59,7 +59,9 @@ public class MyTest {
 
     public static void main(String[] args) throws InterruptedException {
         MyTest test = new MyTest();
-        test.wrong();
+        int x = -10;
+        System.out.println(String.valueOf(x));
+//        test.wrong();
     }
 
 }

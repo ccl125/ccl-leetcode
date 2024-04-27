@@ -61,6 +61,7 @@ public class MyTest {
         MyTest test = new MyTest();
         int x = -10;
         System.out.println(String.valueOf(x));
+        int my = 20;
         //Test
 //        test.wrong();
     }

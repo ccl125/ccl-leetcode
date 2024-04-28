@@ -23,12 +23,13 @@ public class H_反转链表 {
 
     /**
      * cur保持不变，一直是5，在递归回去的过程中，每次进的node不同，回去的时候变换node
+     *
      * @param head
      * @return 巧妙的递归
      */
     public ListNode reverseList(ListNode head) {
         //递归终止条件是当前为空，或者下一个节点为空
-        if(head==null || head.next==null) {
+        if (head == null || head.next == null) {
             return head;
         }
         //这里的cur就是最后一个节点
@@ -45,7 +46,7 @@ public class H_反转链表 {
     }
 
     //巧妙的递归
-    public ListNode studyRecursion (ListNode head) {
+    public ListNode studyRecursion(ListNode head) {
         if (head == null || head.next == null) {
             return head;
         }
@@ -55,28 +56,36 @@ public class H_反转链表 {
         return tail;
     }
 
-
+    //链表反转
     public ListNode reverseList2(ListNode head) {
         ListNode pre = null;
         ListNode cur = head;
         while (cur != null) {
             ListNode next = cur.next;
-            cur.next=pre;
-            pre=cur;
-            cur=next;
-
+            cur.next = pre;
+            pre = cur;
+            cur = next;
         }
         return pre;
     }
-
-    public static void main(String[] args) {
-        H_反转链表 test = new H_反转链表();
-        ListNode d = test.new ListNode(1);
-        d.next = test.new ListNode(2);
-//        d.next.next = test.new ListNode(3);
-//        d.next.next.next = test.new ListNode(4);
-//        d.next.next.next.next = test.new ListNode(5);
-        test.reverseList2(d);
+    //指定链表区间反转
+    public ListNode reverseBetween(ListNode head, int m, int n) {
+        ListNode dummy = new ListNode(0);
+        dummy.next = head;
+        ListNode preStart = dummy;
+        ListNode start = head;
+        for (int i = 1; i < m; i++) {
+            preStart = start;
+            start = start.next;
+        }
+        // reverse
+        for (int i = 0; i < n - m; i++) {
+            ListNode temp = start.next;
+            start.next = temp.next;
+            temp.next = preStart.next;
+            preStart.next = temp;
+        }
+        return dummy.next;
     }
-
 }
+

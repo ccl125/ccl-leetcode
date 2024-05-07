@@ -1,9 +1,7 @@
 package test;
 
 import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.CompletionStage;
 import java.util.concurrent.ExecutionException;
-import java.util.function.Function;
 
 /**
  * @Author CuiChengLong

@@ -50,6 +50,16 @@ public class H_相交链表 {
         return null;
     }
 
+    public ListNode getIntersectionNode2(ListNode headA, ListNode headB) {
+        ListNode A = headA;
+        ListNode B = headB;
+        while(A != B) {
+            A = A != null ? A.next : headB;
+            B = B != null ? B.next : headA;
+        }
+        return A;
+    }
+
     public static void main(String[] args) {
         H_相交链表 test = new H_相交链表();
         ListNode d = test.new ListNode(4);

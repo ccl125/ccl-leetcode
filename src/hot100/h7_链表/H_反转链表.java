@@ -55,7 +55,6 @@ public class H_反转链表 {
         head.next = null;//防止循环
         return tail;
     }
-
     //链表反转
     public ListNode reverseList2(ListNode head) {
         ListNode pre = null;

@@ -26,7 +26,6 @@ public class CompletableFutureTest {
             System.out.println("异步任务执行结束");
             return "返回结果";
         });
-        Integer.toBinaryString()
         String result1 = firstTask.join();
         String result2 = null;
         try {

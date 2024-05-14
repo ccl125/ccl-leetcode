@@ -39,7 +39,7 @@ public class QuickSort {
     }
 
     public static void main(String[] args) {
-        int[] arr = new int[]{2, 4, 1, 0, 3, 5};
+        int[] arr = new int[]{5,2,3,1};
         int n = arr.length;
         //这里为什么传n-1，因为这里是去对arr里面索引0到n-1的元素去排序的，索引范围是n-1。而不是1到n
         quickSort(arr, 0, n - 1);

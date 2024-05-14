@@ -64,6 +64,32 @@ public class MyTest {
         int my = 20;
         //Test
 //        test.wrong();
+        decrypt(new int[]{2,4,9,3}, -2);
+    }
+
+    public static int[] decrypt(int[] code, int k) {
+        int n = code.length;
+        int[] res = new int[n];
+        for (int i = 0; i < code.length; i++) {
+            int x1 = (i - 1 + n) % n;
+            int x2 = (i - 2 + n) % n;
+            int x3 = (i - 3 + n) % n;
+            System.out.println("i = " + i + " x1 = " + x1);
+            System.out.println("i = " + i + " x2 = " + x2);
+            System.out.println("i = " + i + " x3 = " + x3);
+            if (k == 0) {
+                res[i] = 0;
+            } else if (k > 0) {
+                for (int j = 1; j <= k; j++) {
+                    res[i] += code[(i + j + n) % n];
+                }
+            } else {
+                for (int j = 1; j <= k; j++) {
+                    res[i] += code[(i - j + n) % n];
+                }
+            }
+        }
+        return res;
     }
 
 }

@@ -7,4 +7,5 @@ package git;
  */
 
 public class Test4 {
+    private String local;
 }

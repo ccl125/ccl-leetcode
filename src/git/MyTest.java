@@ -8,5 +8,7 @@ package git;
 
 public class MyTest {
 
-    private String test;
+    private String test2;
+
+    private String add;
 }

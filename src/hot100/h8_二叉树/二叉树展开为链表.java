@@ -1,6 +1,8 @@
 package hot100.h8_二叉树;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
+import java.util.List;
 
 /**
  * @Author: CuiChengLong
@@ -9,40 +11,23 @@ import java.util.LinkedList;
  */
 public class 二叉树展开为链表 {
 
-    public static void flatten(TreeNode root) {
-        dfs(root);
-        // System.out.println(temp);
-        temp.pollLast();
-        help(root);
+    public void flatten(TreeNode root) {
+        List<TreeNode> list = new ArrayList<TreeNode>();
+        preorderTraversal(root, list);
+        int size = list.size();
+        for (int i = 1; i < size; i++) {
+            TreeNode prev = list.get(i - 1), curr = list.get(i);
+            prev.left = null;
+            prev.right = curr;
+        }
     }
 
-    public static void help(TreeNode root) {
-        if (root == null || temp.peekLast() == null) return;
-        root.left = null;
-        root.right = new TreeNode(temp.pollLast());
-        // System.out.println(temp.pollFirst());
-        help(root.right);
-    }
-
-
-    static LinkedList<Integer> temp = new LinkedList<>();
-    public static void dfs(TreeNode root) {
-        if (root == null) return;
-        temp.addFirst(root.val);
-        dfs(root.left);
-        dfs(root.right);
-    }
-
-    public static void main(String[] args) {
-        TreeNode root = new TreeNode(1);
-        TreeNode left = new TreeNode(2);
-        TreeNode right = new TreeNode(5);
-        root.left = left;
-        root.right = right;
-        left .left = new TreeNode(3);
-        left .right = new TreeNode(4);
-        right.left = new TreeNode(6);
-        flatten(root);
+    public void preorderTraversal(TreeNode root, List<TreeNode> list) {
+        if (root != null) {
+            list.add(root);
+            preorderTraversal(root.left, list);
+            preorderTraversal(root.right, list);
+        }
     }
 
 }

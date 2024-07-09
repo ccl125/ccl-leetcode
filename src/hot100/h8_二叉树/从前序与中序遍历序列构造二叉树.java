@@ -11,26 +11,27 @@ import java.util.Map;
 
 public class 从前序与中序遍历序列构造二叉树 {
 
-    private Map<Integer, Integer> indexMap;
-
-    public TreeNode build(int[] preorder, int[] inorder, int preorder_left, int preorder_right, int inorder_left, int inorder_right) {
-        if (preorder_left > preorder_right) return null;
-        int inorder_root = indexMap.get(preorder[preorder_left]);
-        TreeNode root = new TreeNode(preorder[preorder_left]);
-        int size_left_subtree = inorder_root - inorder_left;
-        root.left = build(preorder, inorder, preorder_left + 1, preorder_left + size_left_subtree, inorder_left, inorder_root - 1);
-        root.right = build(preorder, inorder, preorder_left + size_left_subtree + 1, preorder_right, inorder_root + 1, inorder_right);
-        return root;
-    }
-
+    int[] preorder;
+    HashMap<Integer, Integer> dic = new HashMap<>();
     public TreeNode buildTree(int[] preorder, int[] inorder) {
-        int n = preorder.length;
-        // 构造哈希映射，帮助我们快速定位根节点
-        for (int i = 0; i < n; i++) {
-            indexMap.put(inorder[i], i);
-        }
-        return build(preorder, inorder, 0, n - 1, 0, n - 1);
+        this.preorder = preorder;
+        for(int i = 0; i < inorder.length; i++)
+            dic.put(inorder[i], i);
+        return recur(0, 0, inorder.length - 1);
     }
-
+    TreeNode recur(int root, int left, int right) {
+        // 递归终止
+        if (left > right) return null;
+        // 建立根节点
+        TreeNode node = new TreeNode(preorder[root]);
+        // 划分根节点、左子树、右子树
+        int i = dic.get(preorder[root]);
+        // 开启左子树递归
+        node.left = recur(root + 1, left, i - 1);
+        // 开启右子树递归
+        node.right = recur(root + i - left + 1, i + 1, right);
+        // 回溯返回根节点
+        return node;
+    }
 
 }

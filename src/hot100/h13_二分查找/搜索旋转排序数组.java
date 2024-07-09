@@ -34,7 +34,8 @@ public class 搜索旋转排序数组 {
             //mid落在左边有序的数组上
             if (nums[mid] >= nums[right]) {
                 //mid落在左边有序数组的情况下，target还在mid的左边，可以直接将right指针更新到mid - 1处
-                //2种情况，1、target在left和mid中间，更新right = mid - 1
+                //2种情况，1、target在left和
+                // mid中间，更新right = mid - 1
                 //2、其他任何地方，都是更新left = mid + 1; 不需要考虑各个数据之间的关系，只要不是第一种情况都是更新left = mid + 1
                 if (target >= nums[left] && target < nums[mid]) {
                     right = mid - 1;

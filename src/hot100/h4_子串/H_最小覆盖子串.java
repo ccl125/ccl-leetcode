@@ -7,46 +7,42 @@ package hot100.h4_子串;
  */
 public class H_最小覆盖子串 {
 
-    public String minWindow(String s, String t) {
-        String res = "";
-        int sLength = s.length();
-        int tLength = t.length();
-        if (s == null || t == null || sLength == 0 || tLength == 0 || sLength < tLength) {
-            return res;
-        }
-        int targetCount = tLength;
-        int[] needs = new int[128];
-        int[] windows = new int[128];
-        char[] charArray = t.toCharArray();
-        for (int i = 0; i < charArray.length; i++) {
-            needs[charArray[i]]++;
-        }
+    public String minWindow(String S, String t) {
+        char[] s = S.toCharArray();
+        int m = s.length;
+        int ansLeft = -1;
+        int ansRight = m;
         int left = 0;
-        int right = 0;
-        int count = 0;
-        int minLength = sLength + 1;
-        while (right < sLength) {
-            char c = s.charAt(right);
-            windows[c]++;
-            if (needs[c] > 0 && needs[c] >= windows[c]) {
-                count++;
-            }
-
-            while (count == targetCount) {
-                char c1 = s.charAt(left);
-                if (needs[c1] > 0 && needs[c1] >= windows[c1]) {
-                    count--;
-                }
-                if (minLength > right - left + 1) {
-                    minLength = right - left + 1;
-                    res = s.substring(left, right + 1);
-                }
-                windows[c1]--;
-                left++;
-            }
-            right++;
+        int[] cntS = new int[128]; // s 子串字母的出现次数
+        int[] cntT = new int[128]; // t 中字母的出现次数
+        for (char c : t.toCharArray()) {
+            cntT[c]++;
         }
-        return res;
+        for (int right = 0; right < m; right++) { // 移动子串右端点
+            cntS[s[right]]++; // 右端点字母移入子串
+            while (isCovered(cntS, cntT)) { // 涵盖
+                if (right - left < ansRight - ansLeft) { // 找到更短的子串
+                    ansLeft = left; // 记录此时的左右端点
+                    ansRight = right;
+                }
+                cntS[s[left++]]--; // 左端点字母移出子串
+            }
+        }
+        return ansLeft < 0 ? "" : S.substring(ansLeft, ansRight + 1);
+    }
+
+    private boolean isCovered(int[] cntS, int[] cntT) {
+        for (int i = 'A'; i <= 'Z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        for (int i = 'a'; i <= 'z'; i++) {
+            if (cntS[i] < cntT[i]) {
+                return false;
+            }
+        }
+        return true;
     }
 
 }

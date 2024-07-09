@@ -4,6 +4,7 @@ import threadpool.Producer;
 
 import java.util.concurrent.ArrayBlockingQueue;
 import java.util.concurrent.BlockingQueue;
+import java.util.concurrent.LinkedBlockingQueue;
 
 /**
  * @Author CuiChengLong
@@ -37,7 +38,7 @@ public class Customer implements Runnable {
     }
 
     public static void main(String[] args) {
-        BlockingQueue<Integer> queue = new ArrayBlockingQueue<>(100);
+        BlockingQueue<Integer> queue = new LinkedBlockingQueue<>(100);
         Thread producerThread = new Thread(new Producer(queue));
         producerThread.start();
         //2个消费者
